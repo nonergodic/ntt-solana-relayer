@@ -1,0 +1,27 @@
+[package]
+name = "ntt-relayer"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "swap_layer"
+
+[features]
+default = ["localnet", "no-idl"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+localnet = []
+testnet = []
+
+[dependencies]
+anchor-lang = { workspace = true, features = ["init-if-needed"] }
+solana-program.workspace = true
+cfg-if.workspace = true
+
+wormhole-io = "0.1.3"
+wormhole-solana-utils = { version = "0.2.0-alpha.15", features = ["anchor"] }
+
+example-native-token-transfers = { path = "../../solana-example-native-token-transfers/solana/programs/example-native-token-transfers", features = ["no-entrypoint"] }
